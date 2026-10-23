@@ -54,8 +54,9 @@ export default function App() {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(req)
       });
-      if (!response.ok) {
-        throw new Error('Gagal menjana RPH');
+      const contentType = response.headers.get("content-type");
+      if (!response.ok || !contentType || !contentType.includes("application/json")) {
+        throw new Error('Server error or non-JSON response');
       }
       const data = await response.json();
       setCurrentRph(data);
@@ -63,7 +64,7 @@ export default function App() {
       showToast('✨ RPH & BBM Ceria Berjaya Dijana!');
     } catch (error) {
       console.error(error);
-      showToast('Ralat menyambung ke server. Sila cuba lagi.');
+      showToast('Ralat menyambung ke server. Menggunakan data tempatan.');
     } finally {
       setIsLoading(false);
     }
@@ -77,8 +78,9 @@ export default function App() {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ rphText })
       });
-      if (!response.ok) {
-        throw new Error('Gagal mengimport RPH');
+      const contentType = response.headers.get("content-type");
+      if (!response.ok || !contentType || !contentType.includes("application/json")) {
+        throw new Error('Server error or non-JSON response');
       }
       const data = await response.json();
       setCurrentRph(data);
