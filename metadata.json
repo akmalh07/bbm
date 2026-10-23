@@ -1,0 +1,6 @@
+{
+  "name": "RPH & BBM Bahasa Arab IPG",
+  "description": "Sistem penjana RPH dan Bahan Bantu Mengajar (BBM) Bahasa Arab automatik untuk guru pelatih IPG dan guru sekolah rendah.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
